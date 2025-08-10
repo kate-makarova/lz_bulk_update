@@ -60,9 +60,9 @@ class ModerBot:
         return True
 
     def parse_user_list(self):
+        users = []
         for page in range(1, self.user_list_pages + 1):
             self.driver.get(self.address + f"/userlist.php?show_group=-1&sort_by=last_visit&sort_dir=DESC&username=-&p={page}")
-            users = []
             elems = self.driver.find_elements(By.CSS_SELECTOR, 'span.usersname a')
             for elem in elems:
                 parts = elem.get_attribute('href').split('id=')
